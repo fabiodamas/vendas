@@ -1,0 +1,7 @@
+version: '2'
+services:
+  vendas:
+    image: porichigo15/vendas:0.0.1
+    container_name: vendas
+    ports:
+      - 8080:8080
