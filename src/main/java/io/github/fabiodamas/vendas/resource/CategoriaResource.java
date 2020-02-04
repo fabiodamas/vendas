@@ -42,7 +42,7 @@ public class CategoriaResource {
 		return ResponseEntity.created(uri).body(categoriaSalva);
 	}
 
-
+/*
 	@GetMapping("/{codigo}")
 	public ResponseEntity<Categoria> buscarPeloCodigo(@PathVariable Long codigo) {
 		Categoria categoria = categoriaRepository.findOne(codigo);
@@ -50,4 +50,12 @@ public class CategoriaResource {
 	}
 
 
+*/
+
+	@GetMapping("/{codigo}")
+	public ResponseEntity<Categoria> buscarPeloCodigo(@PathVariable Long codigo) throws ResourceNotFoundException {
+		Categoria categoria = categoriaRepository.findById(codigo)
+				.orElseThrow(() -> new ResourceNotFoundException("Categoria not found for this id :: " + codigo));
+		return ResponseEntity.ok().body(categoria);
+	}
 }
