@@ -11,5 +11,5 @@ CREATE TABLE pessoa(
     ativo BOOLEAN
 );
 
-INSERT INTO pessoa  (nome, logradouro, numero, complemento, bairro, cep, cidade, estado, ativo) values ('Fabio Damas', "Rua X", "123", "Apt 123", "Bairro X", "17209440", "Sao Paulo", "SP", true);
+INSERT INTO pessoa  (nome, logradouro, numero, complemento, bairro, cep, cidade, estado, ativo) values ('Fabio Damas', 'Rua X', '123', 'Apt 123', 'Bairro X', '17209440', 'Sao Paulo', 'SP', true);
 

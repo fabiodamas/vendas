@@ -3,6 +3,7 @@ package io.github.fabiodamas.vendas.resource;
 import io.github.fabiodamas.vendas.model.Categoria;
 import io.github.fabiodamas.vendas.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -18,6 +19,9 @@ public class CategoriaResource {
 
 	@Autowired
 	private CategoriaRepository categoriaRepository;
+
+	@Autowired
+	private ApplicationEventPublisher publisher;
 
 	@GetMapping
 	public List<Categoria> listar() {
@@ -35,15 +39,6 @@ public class CategoriaResource {
 		return ResponseEntity.created(uri).body(categoriaSalva);
 	}
 
-/*
-	@GetMapping("/{codigo}")
-	public ResponseEntity<Categoria> buscarPeloCodigo(@PathVariable Long codigo) {
-		Categoria categoria = categoriaRepository.findOne(codigo);
-		return categoria != null ? ResponseEntity.ok(categoria) : ResponseEntity.notFound().build();
-	}
-
-
-*/
 
 	@GetMapping("/{codigo}")
 	public ResponseEntity<Categoria> buscarPeloCodigo(@PathVariable Long codigo)   {
