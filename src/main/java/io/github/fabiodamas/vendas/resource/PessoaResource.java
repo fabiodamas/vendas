@@ -32,7 +32,7 @@ public class PessoaResource {
 		return ResponseEntity.status(HttpStatus.CREATED).body(pessoaSalva);
 	}
 
-	@GetMapping("/")
+    @GetMapping
 	public List<Pessoa> listar() {
 		return pessoaRepository.findAll();
 	}
