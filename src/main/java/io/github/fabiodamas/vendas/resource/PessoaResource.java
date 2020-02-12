@@ -1,23 +1,25 @@
 package io.github.fabiodamas.vendas.resource;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
-
 import io.github.fabiodamas.vendas.event.RecursoCriadoEvent;
-import io.github.fabiodamas.vendas.model.Categoria;
 import io.github.fabiodamas.vendas.model.Pessoa;
 import io.github.fabiodamas.vendas.repository.PessoaRepository;
+import io.github.fabiodamas.vendas.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/pessoas")
 public class PessoaResource {
+
+	@Autowired
+	private PessoaService pessoaService;
 
 	@Autowired
 	private PessoaRepository pessoaRepository;
@@ -49,6 +51,12 @@ public class PessoaResource {
 		Pessoa pessoa = new Pessoa();
 		pessoa.setCodigo(codigo);
 		this.pessoaRepository.delete(pessoa);
+	}
+
+	@PutMapping("/{codigo}")
+	public ResponseEntity<Pessoa> atualizar(@PathVariable Long codigo, @Valid @RequestBody Pessoa pessoa) {
+		Pessoa pessoaSalva = pessoaService.atualizar(codigo, pessoa);
+		return ResponseEntity.ok(pessoaSalva);
 	}
 
 }
